@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import ViewColumnIcon from '@material-ui/icons/ViewColumn';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
@@ -28,6 +30,8 @@ const toolbarStyles = theme => ({
       flex: '1 1 100%',
     },
     actions: {
+      flex: '0 0 45%',
+      textAlign: 'right',
       color: theme.palette.text.secondary,
     },
     title: {
@@ -64,11 +68,25 @@ const toolbarStyles = theme => ({
               </IconButton>
             </Tooltip>
           ) : (
-            <Tooltip title="Filter list">
-              <IconButton aria-label="Filter list">
-                <FilterListIcon />
-              </IconButton>
-            </Tooltip>
+            <>
+              <Tooltip title="Add Record">
+                  <IconButton aria-label="Add Record">
+                    <AddIcon />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="View Column">
+                  <IconButton aria-label="View Column">
+                    <ViewColumnIcon />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="Filter list">
+                  <IconButton aria-label="Filter list">
+                    <FilterListIcon />
+                  </IconButton>
+                </Tooltip>
+            </>
           )}
         </div>
       </Toolbar>
