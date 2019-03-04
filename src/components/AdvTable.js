@@ -26,11 +26,10 @@ const styles = theme => ({
 
 function EnhancedTable(props) {
 
-  const [state , setState] = useState({
-    selected: [],
-    page: 0,
-    rowsPerPage: 5,
-  });
+  const [selected , setSelected] = useState([]);
+  const [page , setPage] = useState(0);
+  const [rowsPerPage , setRowsPerPage] = useState(5);
+  
 
   const data = {
   'columns' : [
@@ -51,14 +50,14 @@ function EnhancedTable(props) {
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
-      setState(() => ({ selected: data.rows.map(n => n.id) }));
+      setSelected(data.rows.map(n => n.id));
       return;
     }
-    setState({ selected: [] });
+    setSelected([]);
   };
 
   const handleClick = (event, id) => {
-    const { selected } = state;
+    
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -75,25 +74,23 @@ function EnhancedTable(props) {
       );
     }
 
-    setState({ selected: newSelected });
+    setSelected(newSelected);
   };
 
   const handleChangePage = (event, page) => {
-    setState({ page });
+    setPage(page);
   };
 
   const handleChangeRowsPerPage = event => {
-    setState({ rowsPerPage: event.target.value });
+    setRowsPerPage(event.target.value);
   };
 
   const isSelected = id => {
-    return state.selected.indexOf(id) !== -1;
+    return selected.indexOf(id) !== -1;
   };
   
     const { classes } = props;
-    const {selected, rowsPerPage, page } = state;
-    //const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
+ 
     return (
       <Paper className={classes.root}>
         <CRUDTableToolbar numSelected={selected.length} />
